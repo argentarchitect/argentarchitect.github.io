@@ -1,0 +1,669 @@
+/* ============================================
+   View Transitions
+   ============================================ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: fade-out 0.4s ease-in-out;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.4s ease-in-out;
+}
+
+::view-transition-group(album-cover) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-group(album-title) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-group(album-subtitle) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-group(site-nav) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================
+   Base / Reset
+   ============================================ */
+:root {
+  --primary: #2d3436;
+  --secondary: #636e72;
+  --accent: #c9942e;
+  --accent-hover: #b5841f;
+  --light: #f8f9fa;
+  --white: #ffffff;
+  --border: #e0e0e0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--primary);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  padding: 1rem 2rem;
+  view-transition-name: site-nav;
+}
+
+nav .nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+nav .logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav .nav-links a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+nav .nav-links a:hover {
+  color: var(--accent);
+}
+
+/* ============================================
+   Hero Section (shared)
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem 4rem;
+  background: linear-gradient(180deg, var(--light) 0%, var(--white) 100%);
+}
+
+.hero-content {
+  max-width: 1000px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero .description {
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  color: var(--secondary);
+  font-size: 1.1rem;
+}
+
+/* Hero — artist page */
+.hero-artist-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  border: 4px solid var(--accent);
+}
+
+.hero .tagline {
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+/* Hero — album page */
+.hero-album-cover {
+  width: 100%;
+  max-width: 512px;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 2rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+  view-transition-name: album-cover;
+}
+
+.hero .subtitle {
+  font-size: 1.4rem;
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+  font-style: italic;
+  view-transition-name: album-subtitle;
+}
+
+.hero .artist {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(201, 148, 46, 0.3);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary);
+  border: 2px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ============================================
+   Sections (shared)
+   ============================================ */
+section {
+  padding: 5rem 2rem;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.section-title p {
+  color: var(--secondary);
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   About Section
+   ============================================ */
+.about {
+  background: var(--light);
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-content p {
+  margin-bottom: 1.5rem;
+  color: var(--secondary);
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   Discography (artist page)
+   ============================================ */
+.discography {
+  background: var(--white);
+}
+
+.discography-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.album-card {
+  background: var(--light);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  max-width: 512px;
+}
+
+.album-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.album-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  view-transition-name: album-cover;
+}
+
+.album-content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.album-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+  color: var(--primary);
+  view-transition-name: album-title;
+}
+
+.album-content .album-subtitle {
+  font-size: 1rem;
+  color: var(--secondary);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  view-transition-name: album-subtitle;
+}
+
+.album-content .album-year {
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ============================================
+   Social Links (artist page)
+   ============================================ */
+.social {
+  background: var(--light);
+}
+
+.social-grid {
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--white);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.social-link:hover {
+  background: var(--accent);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.social-link.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ============================================
+   Streaming Links (album page)
+   ============================================ */
+.streaming {
+  background: var(--white);
+}
+
+.streaming-grid {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.streaming-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--light);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.streaming-link:hover {
+  background: var(--accent);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.streaming-link.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ============================================
+   Songs Section (album page)
+   ============================================ */
+.songs {
+  background: var(--light);
+}
+
+.songs-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.song-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.song-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.song-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.song-content {
+  padding: 1.5rem;
+}
+
+.song-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.song-content .song-theme {
+  color: var(--secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.song-content .song-reference {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.song-content .song-reference a {
+  color: var(--accent);
+}
+
+.song-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.listen-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.listen-link:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.listen-link.disabled {
+  background: var(--secondary);
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.listen-link.disabled:hover {
+  transform: none;
+}
+
+.listen-link .badge {
+  font-size: 0.65rem;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 0.15rem 0.4rem;
+  border-radius: 10px;
+  margin-left: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.lyrics-toggle {
+  background: none;
+  border: 2px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  transition: all 0.2s;
+}
+
+.lyrics-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.lyrics-content {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--light);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.lyrics-content.active {
+  display: block;
+}
+
+.lyrics-content .section-label {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   Podcast Section (album page)
+   ============================================ */
+.podcast {
+  background: var(--white);
+}
+
+.podcast-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.podcast-content p {
+  color: var(--secondary);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+  background: var(--primary);
+  color: var(--white);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+footer p {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--white);
+  opacity: 0.8;
+}
+
+footer a:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+  nav .nav-links {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero .tagline {
+    font-size: 1.1rem;
+  }
+
+  .hero .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-artist-image {
+    max-width: 200px;
+  }
+
+  .discography-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .songs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 3rem 1.5rem;
+  }
+}
