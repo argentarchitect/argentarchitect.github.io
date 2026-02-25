@@ -67,10 +67,14 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--primary);
   background: var(--white);
   line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Philosopher', Georgia, serif;
 }
 
 /* ============================================
@@ -100,6 +104,7 @@ nav .logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: 'Philosopher', Georgia, serif;
   font-weight: 600;
   font-size: 1.1rem;
   color: var(--primary);
