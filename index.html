@@ -23,6 +23,10 @@
         <li><a href="#discography">Discography</a></li>
         <li><a href="#connect">Connect</a></li>
       </ul>
+      <button class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="icon-moon">☽</span>
+        <span class="icon-sun">☀</span>
+      </button>
     </div>
   </nav>
 
@@ -107,5 +111,27 @@
     <p>&copy; 2026 Argent Architect. All rights reserved.</p>
   </footer>
 
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.querySelector('.theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      if (newTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', newTheme);
+      }
+
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
 </body>
 </html>
