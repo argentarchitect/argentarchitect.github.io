@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Shen Circuit: Motifs of Antiquity | Argent Architect</title>
+  <style>
+    :root {
+      --primary: #2d3436;
+      --secondary: #636e72;
+      --accent: #c9942e;
+      --accent-hover: #b5841f;
+      --light: #f8f9fa;
+      --white: #ffffff;
+      --border: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--primary);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1rem 2rem;
+    }
+
+    nav .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    nav .logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav .nav-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    nav .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      background: linear-gradient(180deg, var(--light) 0%, var(--white) 100%);
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      text-align: center;
+    }
+
+    .hero-album-cover {
+      width: 100%;
+      max-width: 512px;
+      height: auto;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-bottom: 2rem;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .subtitle {
+      font-size: 1.4rem;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .hero .artist {
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .hero .description {
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(201, 148, 46, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--primary);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+
+    /* About Section */
+    .about {
+      background: var(--light);
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+
+    /* Streaming Links */
+    .streaming {
+      background: var(--white);
+    }
+
+    .streaming-grid {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .streaming-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--light);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .streaming-link:hover {
+      background: var(--accent);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .streaming-link.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Songs Section */
+    .songs {
+      background: var(--light);
+    }
+
+    .songs-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .song-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .song-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .song-image {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .song-content {
+      padding: 1.5rem;
+    }
+
+    .song-content h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .song-content .song-theme {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .song-content .song-reference {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .song-content .song-reference a {
+      color: var(--accent);
+    }
+
+    .song-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .listen-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .listen-link:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .listen-link.disabled {
+      background: var(--secondary);
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .listen-link.disabled:hover {
+      transform: none;
+    }
+
+    .listen-link .badge {
+      font-size: 0.65rem;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 0.15rem 0.4rem;
+      border-radius: 10px;
+      margin-left: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .lyrics-toggle {
+      background: none;
+      border: 2px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--secondary);
+      transition: all 0.2s;
+    }
+
+    .lyrics-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .lyrics-content {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--light);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .lyrics-content.active {
+      display: block;
+    }
+
+    .lyrics-content .section-label {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Podcast Section */
+    .podcast {
+      background: var(--white);
+    }
+
+    .podcast-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .podcast-content p {
+      color: var(--secondary);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: var(--white);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--white);
+      opacity: 0.8;
+    }
+
+    footer a:hover {
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1.1rem;
+      }
+
+      .songs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-content">
+      <a href="/" class="logo">
+        <img src="../images/ArgentArtchitect_m.jpg" alt="Argent Architect">
+        Argent Architect
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#listen">Listen</a></li>
+        <li><a href="#songs">Songs</a></li>
+        <li><a href="#podcast">Podcast</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="../images/Shen_Circuit_-_Cover_m.jpg" alt="The Shen Circuit Album Cover" class="hero-album-cover">
+      <h1>The Shen Circuit</h1>
+      <p class="subtitle">Motifs of Antiquity</p>
+      <p class="artist">by Argent Architect</p>
+      <p class="description">
+        An EDM journey through ancient creation narratives. Each track explores timeless themes
+        from world mythology, weaving together primordial waters, divine utterance, cosmic order,
+        and the eternal dance between chaos and creation.
+      </p>
+      <div class="btn-group">
+        <a href="#listen" class="btn btn-primary">Listen & Purchase</a>
+        <a href="#songs" class="btn btn-secondary">Explore the Songs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="section-title">
+      <h2>About the Album</h2>
+      <p>Ancient wisdom meets electronic soundscapes</p>
+    </div>
+    <div class="about-content">
+      <p>
+        <strong>The Shen Circuit</strong> draws its name from the Egyptian shen ring, an ancient symbol
+        of eternity and protection. This album is a sonic exploration of creation mythology from
+        cultures around the world, from the primordial waters of Nun to the divine council,
+        from the cosmic egg to the foundation stone.
+      </p>
+      <p>
+        Each track is rooted in genuine ancient traditions, Egyptian, Mesopotamian, Hebrew,
+        and beyond, transformed into modern electronic compositions. The lyrics invite
+        listeners to discover the profound themes that have shaped human understanding of
+        existence, order, and purpose.
+      </p>
+      <p>
+        Whether you're drawn to mythology, spirituality, or simply powerful EDM,
+        The Shen Circuit offers a unique journey through the stories that have echoed
+        through millennia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Streaming Section -->
+  <section id="listen" class="streaming">
+    <div class="section-title">
+      <h2>Listen & Purchase</h2>
+      <p>Coming soon to all major platforms</p>
+    </div>
+    <div class="streaming-grid">
+      <a href="#" class="streaming-link disabled">Spotify</a>
+      <a href="#" class="streaming-link disabled">Apple Music</a>
+      <a href="#" class="streaming-link disabled">Amazon Music</a>
+      <a href="#" class="streaming-link disabled">YouTube Music</a>
+      <a href="#" class="streaming-link disabled">iHeartRadio</a>
+      <a href="#" class="streaming-link disabled">Deezer</a>
+    </div>
+  </section>
+
+  <!-- Songs Section -->
+  <section id="songs" class="songs">
+    <div class="section-title">
+      <h2>The Songs</h2>
+      <p>Explore the ancient themes behind each track</p>
+    </div>
+    <div class="songs-grid">
+
+      <!-- Track 01: Ma'at -->
+      <div class="song-card">
+        <img src="../images/Ma'at_m.jpg" loading="lazy" alt="Ma'at" class="song-image">
+        <div class="song-content">
+          <h3>1. Ma'at</h3>
+          <p class="song-theme">The cosmic principle of righteousness that enables God to reverse entropy and bring order</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Maat" target="_blank">Ma'at (Egyptian)</a>, <a href="https://en.wikipedia.org/wiki/Tao" target="_blank">Dao (Chinese)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Instrumental]</span>
+This track is an instrumental meditation on cosmic order.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 02: Divine Utterance -->
+      <div class="song-card">
+        <img src="../images/Divine_Utterance_(Say_the_World)_m.jpg" loading="lazy" alt="Divine Utterance" class="song-image">
+        <div class="song-content">
+          <h3>2. Divine Utterance (Say the World)</h3>
+          <p class="song-theme">God commands by divine authority that the disordered elements organize themselves into creation</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Logos" target="_blank">Logos (Greek)</a>, <a href="https://en.wikipedia.org/wiki/Heka_(god)" target="_blank">Heka (Egyptian)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse 1]</span>
+Word first, not hand.
+Sound flows; forms stand.
+Wild hears then knows.
+
+<span class="section-label">[Pre-Chorus]</span>
+Name it and order shows.
+
+<span class="section-label">[Chorus]</span>
+Say, world, turns.
+Breath, fire, burns.
+Lines align.
+From nun, light shines.
+Divine utterance,
+Make the design.
+
+<span class="section-label">[Verse 2]</span>
+He sings; night keeps time.
+All the atoms rhyme.
+Word wakes; land and seas.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 03: Song of the Primordial Sea -->
+      <div class="song-card">
+        <img src="../images/Song_of_the_Primordial_Sea_m.jpg" loading="lazy" alt="Song of the Primordial Sea" class="song-image">
+        <div class="song-content">
+          <h3>3. Song of the Primordial Sea</h3>
+          <p class="song-theme">The pre-creative universe: a vast, chaotic expanse of disordered matter symbolized as endless water</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Nu_(mythology)" target="_blank">Nun (Egyptian)</a>, <a href="https://en.wikipedia.org/wiki/Abzu" target="_blank">Apsu (Mesopotamian)</a>, <a href="https://en.wikipedia.org/wiki/Tehom" target="_blank">Tehom (Hebrew)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse 1]</span>
+No sky yet, no shore, just a hush without a name,
+An endless black-blue ocean of elements unchained.
+Nun, Apsu, Tehom - three faces of the same,
+A cradle and a chaos, a womb before the flame.
+
+<span class="section-label">[Pre-Chorus]</span>
+I float on the unformed, a heartbeat in the deep,
+Where possibility is rising from its sleep.
+
+<span class="section-label">[Chorus]</span>
+Out of the water where the world begins,
+I hear tomorrow inside the winds.
+Chaos is only a seed in the sea,
+Waiting for order to set it free.
+I'm learning to breathe where no breath has been,
+The first light flickers; let the making begin.
+
+<span class="section-label">[Verse 2]</span>
+No borders but the yearning, like rain before it falls,
+A galaxy of micro-eddies whispering through the halls.
+The sea is heavy silence, but you can almost hear
+The syllables of future lifting out of fear.
+
+<span class="section-label">[Bridge]</span>
+Call it birthwater, call it midnight's skin,
+Even in the dark, the dawn leans in.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 04: The Beloved Volunteer -->
+      <div class="song-card">
+        <img src="../images/The_Beloved_Volunteer_m.jpg" loading="lazy" alt="The Beloved Volunteer" class="song-image">
+        <div class="song-content">
+          <h3>4. The Beloved Volunteer</h3>
+          <p class="song-theme">In the heavenly council, the beloved son volunteers to battle the dragon and bring forth creation</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Divine_council" target="_blank">Divine Council</a>, <a href="https://en.wikipedia.org/wiki/Chaoskampf" target="_blank">Chaoskampf</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse]</span>
+An ancient age, no dust, no dawn,
+In council where the gods are from,
+A figure stands, his purpose plain,
+I'll face the dragon, break its chains.
+
+<span class="section-label">[Pre-Chorus]</span>
+Not for the glory, not for a throne,
+But so the house of light is sown.
+
+<span class="section-label">[Chorus]</span>
+Here am I, send me through,
+If love's a sword, then make it true.
+Grant me the words that order brings,
+I'll quiet the sea; ignite the springs.
+...
+For you... I'll plant a sun,
+I volunteer until it's done.
+
+<span class="section-label">[Verse]</span>
+Council agrees, their sure as stars,
+Authority shared, united hearts,
+Courage, the silence after "Yes,"
+Destiny takes its first full breath.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 05: The Brooding Wind -->
+      <div class="song-card">
+        <img src="../images/The_Brooding_Wind_m.jpg" loading="lazy" alt="The Brooding Wind" class="song-image">
+        <div class="song-content">
+          <h3>5. The Brooding Wind</h3>
+          <p class="song-theme">The divine wind brooding over the waters, causing elements to whirl in a vortex of creation</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Ruach" target="_blank">Ruach (Hebrew)</a>, <a href="https://en.wikipedia.org/wiki/Shu_(Egyptian_god)" target="_blank">Shu (Egyptian)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse 1]</span>
+Word first, not hand.
+Sound flows; forms stand.
+Wild hears then knows.
+
+<span class="section-label">[Pre-Chorus]</span>
+Name it and order shows.
+
+<span class="section-label">[Chorus]</span>
+Say, world, turns.
+Breath, fire, burns.
+Lines align.
+From nun, light shines.
+Divine utterance,
+Make the design.
+
+<span class="section-label">[Verse 2]</span>
+He sings; night keeps time.
+All the atoms rhyme.
+Word wakes; land and seas.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 06: Earth, Come Forth -->
+      <div class="song-card">
+        <img src="../images/Earth_Come_Forth_m.jpg" loading="lazy" alt="Earth, Come Forth" class="song-image">
+        <div class="song-content">
+          <h3>6. Earth, Come Forth</h3>
+          <p class="song-theme">The crowned king begins material creation, commanding elements to form the world</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Genesis_creation_narrative" target="_blank">Genesis (Hebrew)</a>, <a href="https://en.wikipedia.org/wiki/Enuma_Elish" target="_blank">Enuma Elish (Mesopotamian)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse]</span>
+"Gather," he says, and the waters lean;
+"Rise," he says, and the hills are green.
+From raft on the deep to reeds at the shore,
+Forests answer, fields implore.
+
+<span class="section-label">[Pre-Chorus]</span>
+Dry land listens like a child,
+Cracks its smile, growing wild.
+
+<span class="section-label">[Chorus]</span>
+Earth, come forth from the blue,
+Wear the sun, drink the dew.
+Rivers run to the edges four,
+Every road a living door.
+Stone by stone, day by day,
+He sings the firmament into clay.
+
+<span class="section-label">[Verse]</span>
+Grain like starlight, orchards like choirs,
+Soil holds memory of heavenly fires.
+Creation is kindness learning to speak,
+Abundance for strong, mercy for weak.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 07: The Egg and the Sunbird -->
+      <div class="song-card">
+        <img src="../images/The_Egg_and_the_Sunbird_m.jpg" loading="lazy" alt="The Egg and the Sunbird" class="song-image">
+        <div class="song-content">
+          <h3>7. The Egg and the Sunbird</h3>
+          <p class="song-theme">God emerges like a brilliant sun from the cosmic egg, soaring above the waters as a phoenix</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/World_egg" target="_blank">Cosmic Egg</a>, <a href="https://en.wikipedia.org/wiki/Bennu" target="_blank">Bennu Bird (Egyptian)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse 1]</span>
+Crack in the hush, gold yolk of a world,
+Shell splits wide, phoenix-wing unfurled;
+Light floods out like a river, brave and new.
+
+<span class="section-label">[Pre-Chorus]</span>
+From bird on Benben to spark in our chest, creation says yes.
+
+<span class="section-label">[Chorus]</span>
+Break, cosmic egg, spill day on the foam,
+Sunbird, rise and call us home.
+Let silver shell give sky its name,
+We hatch with the heavens, feathered in flame.
+
+<span class="section-label">[Verse 2]</span>
+Night clings like dew to stone,
+But the bird's bright cry names what's known.
+
+<span class="section-label">[Bridge]</span>
+From cracking, not keeping, our brightest futures leap.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 08: The Foundation Stone -->
+      <div class="song-card">
+        <img src="../images/The_Foundation_Stone_m.jpg" loading="lazy" alt="The Foundation Stone" class="song-image">
+        <div class="song-content">
+          <h3>8. The Foundation Stone</h3>
+          <p class="song-theme">The rock foundation at the center of the world, upon which the temple sanctuary is built</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Foundation_Stone" target="_blank">Eben Shetiyah (Hebrew)</a>, <a href="https://en.wikipedia.org/wiki/Axis_mundi" target="_blank">Axis Mundi</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse 1]</span>
+Drive the pegs in, set the line,
+Press the scaled ones to the brine.
+Temen under Egal, hammered through,
+Serpent sealed in the Apsu blue.
+
+<span class="section-label">[Pre-Chorus]</span>
+Center the compass, still the spin,
+Drop the plumb deep; let order win.
+
+<span class="section-label">[Chorus]</span>
+At the heart of the world, a stone,
+Where heaven and the deep are sewn.
+On that weight the ages grow,
+From root to roof, let rivers flow.
+Hold the middle, the pattern stays,
+Shift that heart and the world unlays.
+
+<span class="section-label">[Verse 2]</span>
+Enki's seal in the mason's hands,
+Stone that dams the buried sands.
+When the mouth is stopped, the deeps lie still,
+Every tide bends to the mountain's will.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 09: The Primordial Mound -->
+      <div class="song-card">
+        <img src="../images/The_Primordial_Mound_m.jpg" loading="lazy" alt="The Primordial Mound" class="song-image">
+        <div class="song-content">
+          <h3>9. The Primordial Mound (Garden Palace)</h3>
+          <p class="song-theme">The sacred temple palace at the center of the world, from which all creation expands</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Benben" target="_blank">Benben (Egyptian)</a>, <a href="https://en.wikipedia.org/wiki/Garden_of_Eden" target="_blank">Garden of Eden (Hebrew)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse]</span>
+Up from the flood, a first green rise,
+A hill, a heartbeat under the skies.
+A garden on a mountain, a palace of shade,
+Where lions lie gentle and swords are unmade.
+
+<span class="section-label">[Pre-Chorus]</span>
+From this center, worldlines bloom,
+Eden the floorplan for all rooms.
+
+<span class="section-label">[Chorus]</span>
+From mound to the margins, grow,
+Borders learn to glow.
+Ouroboros rings the round,
+Keeping sanctuary sound.
+Earth, takes shape, many lands.
+From the middle, love expands,
+
+<span class="section-label">[Verse]</span>
+Four bright rivers lace the plain,
+Every path a hymn to rain.
+Start with a garden, end with one too,
+In the circle of mercy, all things are new.
+
+<span class="section-label">[Pre-Chorus]</span>
+A refuge for rest, sanctuary of glow,
+Made to reality, as above, so below.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 10: Build Me a Resting Place -->
+      <div class="song-card">
+        <img src="../images/Build_Me_a_Resting_Place_m.jpg" loading="lazy" alt="Build Me a Resting Place" class="song-image">
+        <div class="song-content">
+          <h3>10. Build Me a Resting Place</h3>
+          <p class="song-theme">After defeating the dragon, the king has no place to rest, and initiates creation of his sanctuary</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Chaoskampf" target="_blank">Chaoskampf</a>, <a href="https://en.wikipedia.org/wiki/Enuma_Elish" target="_blank">Enuma Elish (Mesopotamian)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse]</span>
+Dragon's shadow on the sea,
+Battle scars in majesty.
+Through the haze He cast His gaze
+No resting throne, no holy place.
+
+<span class="section-label">[Chorus]</span>
+So He called the calm to rise,
+Set a home beneath the skies.
+Built a place for Him above,
+Wove the world for those He loves.
+
+<span class="section-label">[Verse]</span>
+Stormlight fading on the deep,
+King in search of peace to keep.
+From the wild, He cleared the night,
+Made space for joy, made room for light.
+
+<span class="section-label">[Bridge]</span>
+From the broken waves He rose,
+Crowned the heavens where light glows.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 11: Exile of the Serpent -->
+      <div class="song-card">
+        <img src="../images/Exile_of_the_Serpent_m.jpg" loading="lazy" alt="Exile of the Serpent" class="song-image">
+        <div class="song-content">
+          <h3>11. Exile of the Serpent</h3>
+          <p class="song-theme">A son of God rebels, attempts to usurp the throne, and is banished to the outer chaos</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Apophis" target="_blank">Apophis (Egyptian)</a>, <a href="https://en.wikipedia.org/wiki/Leviathan" target="_blank">Leviathan (Hebrew)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse]</span>
+A son of light, but burning eyes;
+Reached for the throne.
+Breaker rise, glittering lies,
+Council sees the shadow.
+
+<span class="section-label">[Pre-Chorus]</span>
+Scaled question, curled deep,
+Cast him down, never to sleep.
+
+<span class="section-label">[Chorus]</span>
+Out to the chaos you go!
+Outer dark where wild rivers flow.
+Bite the night; the law holds fast.
+But for us, high winds
+Raise the mast.
+
+<span class="section-label">[Post-Chorus]</span>
+Get to the deep, down to the deep.
+
+<span class="section-label">[Verse]</span>
+Thrash in Tehom, rattle in Nun,
+Boundary holds like a ring of sun.
+Banishment of mercy's art;
+Turn and learn the lawful heart.
+
+<span class="section-label">[Bridge]</span>
+Gone from the council, his glow,
+Mourned beyond the wall.
+Light withheld; love still calls.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 12: Crowned in the Circle -->
+      <div class="song-card">
+        <img src="../images/Crowned_in_the_Circle_m.jpg" loading="lazy" alt="Crowned in the Circle" class="song-image">
+        <div class="song-content">
+          <h3>12. Crowned in the Circle</h3>
+          <p class="song-theme">Upon conquering the dragon, the High God crowns the victorious son as heavenly king</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Shen_ring" target="_blank">Shen Ring (Egyptian)</a>, <a href="https://en.wikipedia.org/wiki/Cartouche" target="_blank">Cartouche (Egyptian)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse 1]</span>
+They set a throne on newborn height,
+Cartouche halo, ropes of light.
+The name inscribed, a ring so round,
+Uraeus watching, the temple-crowned.
+
+<span class="section-label">[Pre-Chorus]</span>
+Because he kept the straightest line,
+They hand him scepter, rod, and sign.
+
+<span class="section-label">[Chorus]</span>
+Long live the king who loves the law,
+Whose breath makes blossom all our awe.
+In Shen-ring shelter, prenomen bright,
+He wears the sunrise like a right.
+
+<span class="section-label">[Verse 2]</span>
+Benben glitters beneath his seat,
+A mountain of promise under his feet.
+Kingship is service, the law in bloom,
+A garden inside every room.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 13: Armory of Heaven -->
+      <div class="song-card">
+        <img src="../images/Armory_of_Heaven_(Ring_Dance)_m.jpg" loading="lazy" alt="Armory of Heaven" class="song-image">
+        <div class="song-content">
+          <h3>13. Armory of Heaven (Ring Dance)</h3>
+          <p class="song-theme">The High God gives the beloved son weapons for battle; the ring dance ritual defeats the dragon</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Sacred_dance" target="_blank">Ring Dance Ritual</a>, <a href="https://en.wikipedia.org/wiki/Chaoskampf" target="_blank">Theomachy</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse 1]</span>
+A net from a father, a bow made of light,
+A mace with a memory, a spear for the night.
+Boots that outrun the rumor of dread,
+A circle of dancers to tangle its head.
+
+<span class="section-label">[Pre-Chorus]</span>
+Round the sacred tree they turn,
+Feet like prayers, hearts that burn.
+
+<span class="section-label">[Chorus]</span>
+Draw the cord, stretch the ring,
+Stamp the ground until it sings.
+Swing the blade, the dragon hears,
+Tie the storm with the net of years.
+Weapons gleam, but love's the art,
+The ring dance binds the serpent's heart.
+
+<span class="section-label">[Verse 2]</span>
+Left foot, right foot, compass spun,
+Four winds lock, nowhere to run.
+Arm me with rhythm, crown me with right,
+Ritual become the fight.
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 14: Law Above Entropy -->
+      <div class="song-card">
+        <img src="../images/Law_Above_Entropy_(Ma'at_Keeps_Time)_m.jpg" loading="lazy" alt="Law Above Entropy" class="song-image">
+        <div class="song-content">
+          <h3>14. Law Above Entropy (Ma'at Keeps Time)</h3>
+          <p class="song-theme">By upholding righteousness, God can reverse thermodynamic entropy and bring order from chaos</p>
+          <p class="song-reference">Learn more: <a href="https://en.wikipedia.org/wiki/Maat" target="_blank">Ma'at (Egyptian)</a>, <a href="https://en.wikipedia.org/wiki/Tzedakah" target="_blank">Tzedek (Hebrew)</a>, <a href="https://en.wikipedia.org/wiki/%E1%B9%9Ata" target="_blank">Rita (Vedic)</a>, <a href="https://en.wikipedia.org/wiki/Tao" target="_blank">Dao (Chinese)</a></p>
+          <div class="song-actions">
+            <a href="#" class="listen-link disabled">Listen <span class="badge">Soon</span></a>
+            <button class="lyrics-toggle" onclick="toggleLyrics(this)">View Lyrics</button>
+          </div>
+          <div class="lyrics-content">
+<span class="section-label">[Verse]</span>
+There's a law that drags the candle down,
+Ash from flame, rust from crown.
+But there's a higher rightness, straight as plumb,
+Where order drums, the cosmos hums.
+
+<span class="section-label">[Pre-Chorus]</span>
+Call it Ma'at, Tzedek, Rita, Dao,
+Truth sets level and lifts us now.
+
+<span class="section-label">[Chorus]</span>
+Rightness reverse the slide,
+Turn the tide, turn the tide.
+When heart is feather-light,
+Chaos loses, day expels night.
+Hold the line that holds the stars,
+Ma'at keeps time, and heals all scars.
+
+<span class="section-label">[Verse 2]</span>
+Where justice stands, the second law bends,
+Entropy falters, order ascends.
+Walk straight path, glow from within,
+Rightness the engine, that never dims.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Podcast Section -->
+  <section id="podcast" class="podcast">
+    <div class="section-title">
+      <h2>Ancient Tradition Podcast</h2>
+      <p>Dive deeper into the themes behind the music</p>
+    </div>
+    <div class="podcast-content">
+      <p>
+        Want to explore the ancient wisdom and mythology that inspired The Shen Circuit?
+        The <strong>Ancient Tradition</strong> podcast takes you on a journey through the
+        creation narratives, cosmic symbolism, and timeless truths from cultures around the world.
+      </p>
+      <p>
+        Each episode unpacks the rich traditions behind themes like the primordial waters,
+        divine utterance, cosmic order, and the eternal struggle between creation and chaos.
+        For direct access to the primary source texts, check out their companion podcast
+        <strong>Audio Writ</strong>.
+      </p>
+      <div class="btn-group">
+        <a href="https://theancienttradition.com/" target="_blank" class="btn btn-primary">Visit The Ancient Tradition</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Mark Hicken. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleLyrics(button) {
+      const lyricsContent = button.parentElement.nextElementSibling;
+      lyricsContent.classList.toggle('active');
+      button.textContent = lyricsContent.classList.contains('active') ? 'Hide Lyrics' : 'View Lyrics';
+    }
+  </script>
+
+</body>
+</html>
