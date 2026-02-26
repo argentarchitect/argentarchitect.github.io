@@ -184,6 +184,13 @@ nav .nav-links a:hover {
   font-size: 1.1rem;
 }
 
+.highlight {
+  color: var(--accent);
+  font-weight: 500;
+  border-radius: 4px;
+  font-style: italic;
+}
+
 /* Hero — artist page */
 .hero-artist-image {
   width: 100%;
@@ -634,18 +641,24 @@ section {
 }
 
 .lyrics-content {
-  display: none;
-  margin-top: 1rem;
-  padding: 1rem;
-  background: var(--light);
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding: 0 1rem;
+  /* background: var(--light); */
   border-radius: 8px;
   font-size: 0.9rem;
   line-height: 1.8;
   white-space: pre-line;
+  opacity: 0;
+  transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, margin-top 0.4s ease-in-out;
 }
 
 .lyrics-content.active {
-  display: block;
+  max-height: 2000px;
+  opacity: 1;
+  margin-top: 1rem;
+  padding: 1rem;
 }
 
 .lyrics-content .section-label {
@@ -738,6 +751,28 @@ footer a {
 
 footer a:hover {
   opacity: 1;
+}
+
+/* sign up form */
+.sign-up-form {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+.slide-in-container-inner {
+  border-radius: 16px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+input[type="submit"] {
+  border-radius: 50px !important;
+}
+[eo-block="powered-by"] {
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  position: absolute !important;
 }
 
 /* ============================================
