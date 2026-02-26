@@ -547,6 +547,11 @@ section {
   font-size: 0.85rem;
   font-weight: 500;
   transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  min-width: 110px;
+  justify-content: center;
 }
 
 .listen-link:hover {
@@ -573,6 +578,43 @@ section {
   margin-left: 0.25rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+}
+
+/* Audio wave animation */
+.audio-wave {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+  margin-left: 6px;
+}
+
+.audio-wave .bar {
+  width: 3px;
+  background: var(--white);
+  border-radius: 2px;
+  animation: wave 0.8s ease-in-out infinite;
+}
+
+.audio-wave .bar:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.audio-wave .bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.audio-wave .bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes wave {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 14px;
+  }
 }
 
 .lyrics-toggle {
