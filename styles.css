@@ -729,6 +729,11 @@ section {
   display: inline;
 }
 
+[data-theme="dark"] [eo-row][data-form] [eo-block="text"] {
+  color: var(--secondary);
+}
+
+
 /* ============================================
    Footer
    ============================================ */
@@ -753,7 +758,7 @@ footer a:hover {
   opacity: 1;
 }
 
-/* sign up form */
+/* sign up forms */
 .sign-up-form {
   display: flex;
   text-align: center;
