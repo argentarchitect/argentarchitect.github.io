@@ -52,119 +52,6 @@
     .hero h1 {
       view-transition-name: album-title;
     }
-
-    .listen-group {
-      display: inline-flex;
-      align-items: center;
-      background: var(--accent);
-      border-radius: 50px;
-      transition: all 0.2s;
-    }
-
-    .listen-group:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-
-    /* Override the default .listen-link when it's inside the group */
-    .listen-group .listen-link {
-      background: transparent !important;
-      padding-right: 0.25rem !important;
-      transform: none !important;
-    }
-
-    .volume-wrapper {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding-right: 1.1rem;
-      padding-left: 0.25rem;
-      height: 100%;
-    }
-
-    .volume-wrapper::before {
-      content: '';
-      position: absolute;
-      bottom: 100%;
-      left: -10px;
-      right: -10px;
-      height: 20px;
-    }
-
-    .volume-wrapper:hover .volume-popup {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .volume-icon {
-      display: flex;
-      align-items: center;
-      color: var(--white);
-    }
-
-    .volume-icon svg {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
-    }
-
-    .volume-popup {
-      position: absolute;
-      bottom: calc(100% + 15px);
-      left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 6px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.2s ease;
-      z-index: 10;
-      height: 100px;
-      width: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Minimalist rotated slider styling */
-    .volume-slider {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 80px; 
-      height: 4px;
-      background: var(--border);
-      border-radius: 4px;
-      outline: none;
-      cursor: pointer;
-      transform: rotate(-90deg);
-      transform-origin: center;
-    }
-    
-    .volume-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-      border: none;
-    }
-
-    .volume-slider::-moz-range-thumb {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-      border: none;
-    }
   </style>
 </head>
 
@@ -250,9 +137,12 @@
       <a href="https://open.spotify.com/album/0oKU2PLsWpVjbBGgwQZN4s" target="_blank" class="streaming-link">
         Spotify
       </a>
-      <a href="#" target="_blank" class="streaming-link disabled">
-        Apple Music
-      </a>
+      <div class="link-wrapper">
+        <a href="#" target="_blank" class="streaming-link disabled">
+          Apple Music
+        </a>
+        <span class="soon-badge">SOON</span>
+      </div>
       <a href="https://music.amazon.com/albums/B0GWFL9Q8V?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_gJ4X5NGa7mI20p3f7WD43J4dh"
         target="_blank" class="streaming-link">
         Amazon Music
@@ -261,9 +151,12 @@
         target="_blank" class="streaming-link">
         YouTube Music
       </a>
-      <a href="#" target="_blank" class="streaming-link disabled">
-        iHeartRadio
-      </a>
+      <div class="link-wrapper">
+        <a href="#" target="_blank" class="streaming-link disabled">
+          iHeartRadio
+        </a>
+        <span class="soon-badge">SOON</span>
+      </div>
       <a href="https://link.deezer.com/s/32WjHpD3EjM1JQ0I2Cduz" target="_blank" class="streaming-link">
         Deezer
       </a>
@@ -1002,7 +895,7 @@
     // Global audio player to ensure only one plays at a time
     let currentAudio = null;
     let currentButton = null;
-    let globalVolume = 1;
+    let globalVolume = localStorage.getItem('globalVolume') !== null ? parseFloat(localStorage.getItem('globalVolume')) : 1;
 
     function createAudioWave() {
       const wave = document.createElement('span');
@@ -1078,20 +971,20 @@
     document.querySelectorAll('.listen-link').forEach(btn => {
       const group = document.createElement('div');
       group.className = 'listen-group';
-      
+
       btn.parentNode.insertBefore(group, btn);
       group.appendChild(btn);
 
       const volumeWrapper = document.createElement('div');
       volumeWrapper.className = 'volume-wrapper';
-      
+
       const icon = document.createElement('div');
       icon.className = 'volume-icon';
       icon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
-      
+
       const popup = document.createElement('div');
       popup.className = 'volume-popup';
-      
+
       const slider = document.createElement('input');
       slider.type = 'range';
       slider.className = 'volume-slider';
@@ -1099,9 +992,10 @@
       slider.max = '1';
       slider.step = '0.01';
       slider.value = globalVolume;
-      
+
       slider.addEventListener('input', (e) => {
         globalVolume = e.target.value;
+        localStorage.setItem('globalVolume', globalVolume);
         if (currentAudio) {
           currentAudio.volume = globalVolume;
         }
@@ -1111,14 +1005,14 @@
           }
         });
       });
-      
+
       // Stop clicks on the wrapper from bubbling up implicitly 
       volumeWrapper.addEventListener('click', (e) => e.stopPropagation());
 
       popup.appendChild(slider);
       volumeWrapper.appendChild(icon);
       volumeWrapper.appendChild(popup);
-      
+
       group.appendChild(volumeWrapper);
     });
 
