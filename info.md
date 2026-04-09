@@ -8,5 +8,5 @@
 - Google Fonts: [https://fonts.googleapis.com/](https://fonts.googleapis.com/)
   - Philosopher font: [https://fonts.google.com/specimen/Philosopher](https://fonts.google.com/specimen/Philosopher)
   - Raleway font: [https://fonts.google.com/specimen/Raleway](https://fonts.google.com/specimen/Raleway)
+- Google Analytics: [https://analytics.google.com/](https://analytics.google.com/)
 - Gmail: [argentarchitect@gmail.com](mailto:argentarchitect@gmail.com)
-
